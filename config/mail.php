@@ -36,11 +36,11 @@ return [
     'mailers' => [
         'smtp' => [
             'transport' => 'smtp',
-            'host' => env('MAIL_HOST', 'smtp.zoho.com'),
+            'host' => env('MAIL_HOST', 'smtp.mailtrap.io'),
             'port' => env('MAIL_PORT', 587),
             'encryption' => env('MAIL_ENCRYPTION', 'tls'),
-            'username' => env('sandeep.rawat@ashplan.media'),
-            'password' => env('Sandy2403@?'),
+            'username' => env('MAIL_USERNAME','b2fdd7bf218a29'),
+            'password' => env('MAIL_PASSWORD','04b13cb70e6102'),
             'timeout' => null,
             'auth_mode' => null,
         ],
