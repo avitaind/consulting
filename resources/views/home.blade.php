@@ -15,7 +15,7 @@
    </div>
    @endif
 
-   <form method="POST" action="{{ url('user/create') }}">
+   <form method="POST" action="{{ url('/create') }}">
 
        {{ csrf_field() }}
 
@@ -54,7 +54,7 @@
      <div class="form-group col-md-6">
 
         <strong>Date of Birth:</strong>
-        <input class="date form-control"  type="date" id="datepicker" name="date">
+        <input class="date form-control"  type="date" id="datepicker" name="dob">
         @if ($errors->has('dob'))
             <span class="text-danger">{{ $errors->first('dob') }}</span>
         @endif
@@ -86,10 +86,11 @@
       <div class="form-group">
            <strong>Bio:</strong>
            <textarea name="bio" class="form-control" placeholder="Please Describe Yourself">
+           </textarea>
            @if ($errors->has('bio'))
                <span class="text-danger">{{ $errors->first('bio') }}</span>
            @endif
-           </textarea>
+         
        </div>
 
        <div class="form-group">
