@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Faker\Provider\Image;
 
 use Illuminate\Http\Request;
 use App\Resumes;
@@ -27,7 +28,8 @@ class HomeController extends Controller
         return view('home');
     }
 
-    public function store(Request $request)
+
+   public function store(Request $request)
     {
         $request->validate([
             'location' => 'required',
@@ -37,7 +39,7 @@ class HomeController extends Controller
             'exprience' => 'required',
             'contact' => 'required',
             'bio' => 'required',
-            'resume' => 'required',
+            'resume' => 'required|mimes:pdf,xlx,csv|max:2048',
         ], 
         
         [
@@ -48,13 +50,18 @@ class HomeController extends Controller
             'exprience.required' => 'Exprience is required',
             'contact.required' => 'Please enter your contact no.',
             'bio.required' => 'Please mention about yourself',
-            'resume.required' => 'Please upload your resume'
+            'resume.required' => 'Please upload your resume',
         ]);
-
+               
+        $fileName = time().'.'.$request->resume->extension();   
+        $request->resume->move(storage_path().'/uploads', $fileName);
+       
+      
         $input = $request->all();
         $resume = Resumes::create($input);
 
         return back()->with('success', 'Details Submitted Successfully.');
+
 
     }
 }

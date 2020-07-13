@@ -15,7 +15,7 @@
    </div>
    @endif
 
-   <form method="POST" action="{{ url('/create') }}">
+   <form method="POST" action="{{ url('/create') }}" enctype="multipart/form-data" enctype="multipart/form-data"> 
 
        {{ csrf_field() }}
 
@@ -96,7 +96,7 @@
        <div class="form-group">
            <strong>Resume:</strong>
            <input type="file" name="resume" class="form-control" placeholder="Upload Your Resume">
-           @if ($errors->has('qualification'))
+           @if ($errors->has('resume'))
                <span class="text-danger">{{ $errors->first('resume') }}</span>
            @endif
        </div>
