@@ -22,3 +22,9 @@ Auth::routes(['verify' => true]);
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::post('/create', 'HomeController@store');
+
+Route::get('admin/home', 'HomeController@adminHome')->name('admin.home')->middleware('is_admin');
+
+Route::get('/view', 'HomeController@show')->middleware('auth');
+
+

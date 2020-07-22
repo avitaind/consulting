@@ -5,6 +5,8 @@ use Faker\Provider\Image;
 
 use Illuminate\Http\Request;
 use App\Resumes;
+use App\User;
+
 
 class HomeController extends Controller
 {
@@ -27,9 +29,14 @@ class HomeController extends Controller
     {
         return view('home');
     }
+    
+    public function adminHome()
+    {
+        return view('adminHome');
+    }
 
 
-   public function store(Request $request)
+    public function store(Request $request)
     {
         $request->validate([
             'location' => 'required',
@@ -63,5 +70,12 @@ class HomeController extends Controller
         return back()->with('success', 'Details Submitted Successfully.');
 
 
+    }
+
+    public function show(){
+
+        $resume = Resumes::all();
+        $user = User::all();
+        return view('view', compact('resume','user'));
     }
 }
