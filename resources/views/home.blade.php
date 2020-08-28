@@ -15,6 +15,7 @@
    </div>
    @endif
 
+
    <form method="POST" action="{{ url('/create') }}" enctype="multipart/form-data" enctype="multipart/form-data"> 
 
        {{ csrf_field() }}

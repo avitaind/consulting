@@ -29,25 +29,14 @@
                 @foreach( $resume as $resume )
                     <tr class="table-active">
                     <td>{{ $resume->id }}</td>
-                  @endforeach
-                  @foreach( $user as $user )
-
-                    <td>{{ $user->name }}</td>
-                    <td>{{ $user->email }}</td>
-                @endforeach
-
-                    @foreach( $user as $user )
-
                     <td>{{ $resume->contact }}</td>
                     <td>{{ $resume->dob }}</td>
                     <td>{{ $resume->gender }}</td>
                     <td>{{ $resume->location }}</td>
                     <td>{{ $resume->qualification }}</td>
                     <td>{{ $resume->bio }}</td>
-
-
-                    </tr>
-                
+                   </tr>
+             
                 @endforeach
                 </tbody>
             </thead>

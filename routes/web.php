@@ -25,6 +25,6 @@ Route::post('/create', 'HomeController@store');
 
 Route::get('admin/home', 'HomeController@adminHome')->name('admin.home')->middleware('is_admin');
 
-Route::get('/view', 'HomeController@show')->middleware('auth');
+Route::get('admin/view', 'HomeController@show')->middleware('is_admin');
 
 

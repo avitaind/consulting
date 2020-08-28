@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 use Faker\Provider\Image;
 
 use Illuminate\Http\Request;
-use App\Resumes;
+use Illuminate\Support\Facades\Auth;
+use App\Resume;
 use App\User;
 
 
@@ -27,17 +28,21 @@ class HomeController extends Controller
      */
     public function index()
     {
+       
         return view('home');
     }
     
     public function adminHome()
     {
-        return view('adminHome');
+        $resumes = Resume::all();
+        return view('adminHome', compact('resumes'));
     }
 
 
     public function store(Request $request)
     {
+        $id = Auth::user()->id;
+
         $request->validate([
             'location' => 'required',
             'qualification' => 'required',
@@ -61,11 +66,21 @@ class HomeController extends Controller
         ]);
                
         $fileName = time().'.'.$request->resume->extension();   
-        $request->resume->move(storage_path().'/uploads', $fileName);
        
-      
-        $input = $request->all();
-        $resume = Resumes::create($input);
+        
+        $resume = new Resume([
+            'user_id'     => $id,
+            'location'     => $request->input('brand'),
+            'qualification' => $request->input('country'),
+            'gender'     => $request->input('title'),
+            'dob' => $request->input('category'),
+            'exprience'   => $request->input('priority'),
+            'contact'   => $request->input('summary'),
+            'bio' => $request->input('objective'),
+            'resume' => $request->resume->move(storage_path().'/uploads', $fileName),
+        ]);
+
+        $resume->save();
 
         return back()->with('success', 'Details Submitted Successfully.');
 
